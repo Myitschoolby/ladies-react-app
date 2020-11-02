@@ -1,0 +1,27 @@
+.catalog {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.catalog_products {
+    
+}
+
+.catalog_products_list {
+    display: flex;
+    list-style: none;
+}
+
+.product {
+    flex: none;
+    width: 250px;
+
+    background-color: #fff;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .5);
+}
+
+.product:not(:last-child) {
+    margin-right: 40px;
+}

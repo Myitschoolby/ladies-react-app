@@ -2,3 +2,45 @@
     margin: 0;
     padding: 0;
 }
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url(../fonts/OpenSans-Regular.ttf);
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'OpenSans', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+
+    overflow: hidden;
+}
+
+#root,
+.ladies {
+    height: 100%;
+    max-height: 100vh;
+
+    overflow: hidden;
+}
+
+.ladies {
+    background-image: url(../images/bg.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: auto 100%;
+
+    padding: 60px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main {
+    height: 100%;
+}
