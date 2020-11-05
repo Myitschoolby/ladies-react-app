@@ -5,6 +5,151 @@
     flex-direction: column;
 }
 
+.catalog_header {
+    margin-bottom: 60px;
+}
+
+.catalog_header,
+.catalog_filters {
+    display: flex;
+    align-items: center;
+}
+
+.catalog_filter_name {
+    font-size: 60px;
+    line-height: 68px;
+    font-weight: 900;
+}
+
+.catalog_filter_option {
+    margin-left: 80px;
+}
+
+.catalog_filter_option_btn {
+    border: 0;
+    border-radius: 50%;
+    background-color: #fff;
+
+    line-height: 60px;
+
+    width: 60px;
+    height: 60px;
+
+    box-shadow: 0 15px 40px #ccc;
+
+    cursor: pointer;
+}
+
+.catalog_filter_option_btn .ico_filter {
+    width: 16px;
+    vertical-align: middle;
+
+    position: relative;
+}
+
+.catalog_filter_option_btn .ico_filter,
+.catalog_filter_option_btn .ico_filter::after,
+.catalog_filter_option_btn .ico_filter::before {
+    content: '';
+    display: inline-block;
+    height: 2px;
+    background-color: #342869;
+}
+
+.catalog_filter_option_btn .ico_filter::after,
+.catalog_filter_option_btn .ico_filter::before  {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.catalog_filter_option_btn .ico_filter::before {
+    width: 22px;
+
+    top: -5px;
+}
+
+.catalog_filter_option_btn .ico_filter::after {
+    width: 10px;
+    top: 5px;
+}
+
+.catalog_nav {
+    margin-left: auto;
+}
+
+.catalog_nav button {
+    border: 1px solid transparent;
+    border-radius: 50%;
+    background-color: #fff;
+
+    line-height: 60px;
+
+    width: 60px;
+    height: 60px;
+
+    cursor: pointer;
+
+    opacity: .6;
+}
+
+.catalog_nav button:hover,
+.catalog_nav button:focus,
+.catalog_nav button.active {
+    border: 1px solid #ccc;
+
+    opacity: 1;
+}
+
+.catalog_nav button:last-child {
+    margin-left: 20px;
+}
+
+.catalog_nav .ico_arrow {
+    width: 20px;
+    vertical-align: middle;
+
+    position: relative;
+}
+
+.catalog_nav .ico_arrow,
+.catalog_nav .ico_arrow::before,
+.catalog_nav .ico_arrow::after {
+    display: inline-block;
+    background-color: #342869;
+    height: 2px;
+}
+
+.catalog_nav .ico_arrow::before,
+.catalog_nav .ico_arrow::after {
+    content: '';
+
+    width: 10px;
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    transform-origin: 0 50%;
+}
+
+.catalog_nav .ico_arrow::before {
+    transform: rotate(-45deg) translateY(-50%);
+}
+
+.catalog_nav .ico_arrow::after {
+    transform: rotate(45deg) translateY(-50%);
+    top: calc(50% - 1px);
+    left: -1.5px;
+}
+
+.catalog_nav_btn_next .ico_arrow {
+    transform: rotate(180deg);
+}
+
 .catalog_products {
     
 }

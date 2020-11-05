@@ -14,12 +14,14 @@ class Catalog extends React.Component {
                     <div className="catalog_filters">
                         <div className="catalog_filter_name">Best Sellers</div>
                         <div className="catalog_filter_option">
-                            <button className="catalog_filter_option_btn"></button>
+                            <button className="catalog_filter_option_btn">
+                                <span className="ico_filter"></span>
+                            </button>
                         </div>
                     </div>
                     <div className="catalog_nav">
-                        <button className="catalog_nav_btn_next"></button>
-                        <button className="catalog_nav_btn_prev"></button>
+                        <button className="catalog_nav_btn_prev"><span className="ico_arrow"></span></button>
+                        <button className="catalog_nav_btn_next"><span className="ico_arrow"></span></button>
                     </div>
                 </div>
                 <div className="catalog_products">

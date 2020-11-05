@@ -8,6 +8,18 @@
     src: url(../fonts/OpenSans-Regular.ttf);
 }
 
+@font-face {
+    font-family: 'OpenSans';
+    src: url(../fonts/OpenSans-Bold.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url(../fonts/OpenSans-ExtraBold.ttf);
+    font-weight: 900;
+}
+
 html, body {
     height: 100%;
 }
@@ -15,6 +27,7 @@ html, body {
 body {
     font-family: 'OpenSans', Arial, Helvetica, sans-serif;
     font-size: 18px;
+    color: #342869;
 
     overflow: hidden;
 }
@@ -39,6 +52,68 @@ body {
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 60px;
+}
+
+.header_logo {
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.header_logo a {
+    text-decoration: none;
+    color: #342869;
+
+    display: inline-block;
+    padding-right: 40px;
+    
+    background-image: url(../images/ico_logo.svg);
+    background-repeat: no-repeat;
+    background-position: top 8px right;
+}
+
+.header_widgets {
+    display: flex;
+    align-items: center;
+}
+
+.header_widget_search_query {
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    padding: 15px 50px 15px 20px;
+    font-size: 18px;
+
+    width: 320px;
+
+    background-image: url(../images/ico_search.svg);
+    background-repeat: no-repeat;
+    background-position: center right 20px;
+}
+
+.header_widget_search_query,
+.header_widget_search_query::placeholder {
+    font-weight: bold;
+    color: #342869;
+}
+
+.header_widget_cart {
+    margin-left: 80px;
+}
+
+.header_widget_cart_btn {
+    border: 0;
+    background-color: transparent;
+
+    background-image: url(../images/ico_cart.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    width: 50px;
+    height: 50px;
+
+    cursor: pointer;
 }
 
 .main {
