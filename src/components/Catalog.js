@@ -2,6 +2,8 @@ import React from 'react';
 
 import '../css/catalog.css';
 
+import Products from './Products.js';
+
 class Catalog extends React.Component {
     constructor() {
         super();
@@ -10,10 +12,13 @@ class Catalog extends React.Component {
     }
 
     slideNextPrev(event) {
-        const btn = event.target == 'SPAN' ? event.target.closest('button') : event.target;
+        const btn = event.target === 'SPAN' ? event.target.closest('button') : event.target;
         const dir = !btn.dataset.dir ? 'next' : btn.dataset.dir;
 
         const products_container = document.querySelectorAll('.catalog_products_list')[0];
+
+        if (!products_container) return;
+
         const products_container_width = products_container.offsetWidth;
 
         const products_list = products_container.querySelectorAll('li');
@@ -37,7 +42,7 @@ class Catalog extends React.Component {
         let ml = 0;
         const stopPoint = (products_list.length * product_first_width) - (Math.ceil(products_container_width / product_first_width) * product_first_width);
 
-        if (product_first_ml < (stopPoint + product_first_width)) ml = product_first_ml + product_first_width * (dir == 'prev' ? -1 : 1);
+        if (product_first_ml < (stopPoint + product_first_width)) ml = product_first_ml + product_first_width * (dir === 'prev' ? -1 : 1);
 
         product_first.style.marginLeft = `-${ml}px`;
     }
@@ -59,127 +64,7 @@ class Catalog extends React.Component {
                         <button data-dir="next" onClick={this.slideNextPrev} className="catalog_nav_btn_next"><span className="ico_arrow"></span></button>
                     </div>
                 </div>
-                <div className="catalog_products">
-                    <ul className="catalog_products_list">
-                        <li className="product">
-                            <div className="product_image">
-                                <img src="https://via.placeholder.com/150x200" />
-                            </div>
-                            <div className="product_caption">
-                                <div className="product_name">Face Mask 1</div>
-                                <div className="product_description">Grape Fruit</div>
-                                <div className="product_price">
-                                    <div className="product_price_value">$15.50</div>
-                                    <button className="product_cart_btn">+</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="product">
-                            <div className="product_image">
-                                <img src="https://via.placeholder.com/150x200" />
-                            </div>
-                            <div className="product_caption">
-                                <div className="product_name">Face Mask 2</div>
-                                <div className="product_description">Grape Fruit</div>
-                                <div className="product_price">
-                                    <div className="product_price_value">$15.50</div>
-                                    <button className="product_cart_btn">+</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="product">
-                            <div className="product_image">
-                                <img src="https://via.placeholder.com/150x200" />
-                            </div>
-                            <div className="product_caption">
-                                <div className="product_name">Face Mask 3</div>
-                                <div className="product_description">Grape Fruit</div>
-                                <div className="product_price">
-                                    <div className="product_price_value">$15.50</div>
-                                    <button className="product_cart_btn">+</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="product">
-                            <div className="product_image">
-                                <img src="https://via.placeholder.com/150x200" />
-                            </div>
-                            <div className="product_caption">
-                                <div className="product_name">Face Mask 4</div>
-                                <div className="product_description">Grape Fruit</div>
-                                <div className="product_price">
-                                    <div className="product_price_value">$15.50</div>
-                                    <button className="product_cart_btn">+</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="product">
-                            <div className="product_image">
-                                <img src="https://via.placeholder.com/150x200" />
-                            </div>
-                            <div className="product_caption">
-                                <div className="product_name">Face Mask 5</div>
-                                <div className="product_description">Grape Fruit</div>
-                                <div className="product_price">
-                                    <div className="product_price_value">$15.50</div>
-                                    <button className="product_cart_btn">+</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="product">
-                            <div className="product_image">
-                                <img src="https://via.placeholder.com/150x200" />
-                            </div>
-                            <div className="product_caption">
-                                <div className="product_name">Face Mask 6</div>
-                                <div className="product_description">Grape Fruit</div>
-                                <div className="product_price">
-                                    <div className="product_price_value">$15.50</div>
-                                    <button className="product_cart_btn">+</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="product">
-                            <div className="product_image">
-                                <img src="https://via.placeholder.com/150x200" />
-                            </div>
-                            <div className="product_caption">
-                                <div className="product_name">Face Mask 7</div>
-                                <div className="product_description">Grape Fruit</div>
-                                <div className="product_price">
-                                    <div className="product_price_value">$15.50</div>
-                                    <button className="product_cart_btn">+</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="product">
-                            <div className="product_image">
-                                <img src="https://via.placeholder.com/150x200" />
-                            </div>
-                            <div className="product_caption">
-                                <div className="product_name">Face Mask 8</div>
-                                <div className="product_description">Grape Fruit</div>
-                                <div className="product_price">
-                                    <div className="product_price_value">$15.50</div>
-                                    <button className="product_cart_btn">+</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="product">
-                            <div className="product_image">
-                                <img src="https://via.placeholder.com/150x200" />
-                            </div>
-                            <div className="product_caption">
-                                <div className="product_name">Face Mask 9</div>
-                                <div className="product_description">Grape Fruit</div>
-                                <div className="product_price">
-                                    <div className="product_price_value">$15.50</div>
-                                    <button className="product_cart_btn">+</button>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                <Products />
             </div>
         );
     }
