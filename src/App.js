@@ -1,38 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from './components/Header.js';
 import Main from './components/Main.js';
 
 import './css/style.css';
 
-class App extends React.Component {
-    constructor() {
-        super();
+export const Context = React.createContext();
 
-        this.state = {
-            statusData: false
-        };
+function App() {
+    const [dataStatus, setDataStatus] = useState(false);
 
-        this.getData();
-    }
-
-    getData = async function() {
-        if (this.storage()) return;
+    const getData = async function() {
+        if (dataStatus) return;
 
         await fetch('https://fakestoreapi.com/products/')
         .then((response) => {
             return response.json();
         })
         .then((result) => {
-            this.setState({
-                statusData: true
-            });
+            storage(result);
 
-            this.storage(result);
+            setDataStatus(true);
         });
-    }
 
-    storage(data) {
+        return false;
+    };
+
+    function storage(data) {
         data = data || '';
 
         if (data.length > 0) {
@@ -48,14 +42,16 @@ class App extends React.Component {
         return false;
     }
 
-    render() {
-        return (
-            <div className="ladies">
-                <Header />
-                <Main />
-            </div>
-        );
-    }
+    getData();
+
+    return (
+        <div className="ladies" data-status={dataStatus}>
+        <Context.Provider value={dataStatus}>
+            <Header />
+            <Main />
+        </Context.Provider>
+        </div>
+    );
 }
 
 export default App;

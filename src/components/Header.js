@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Cart from './Cart.js';
+
 class Header extends React.Component {
     render() {
         return (
@@ -9,9 +11,7 @@ class Header extends React.Component {
                     <div className="header_widget_search">
                         <input className="header_widget_search_query" name="search_query" placeholder="Search" />
                     </div>
-                    <div className="header_widget_cart">
-                        <button className="header_widget_cart_btn"></button>
-                    </div>
+                    <Cart />
                 </div>
             </header>
         );

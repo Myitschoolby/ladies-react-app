@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
-class Products extends React.Component {
-    storage() {
-        const storageData = localStorage.getItem('data') || '';
+import {Context} from '../App.js';
 
-        if (storageData.length > 0) return JSON.parse(storageData);
+function Products() {
+    const dataStatus = useContext(Context);
 
-        return false;
-    }
+    const [productsHtml, setProductsHtml] = useState('');
 
-    show() {
-        const data = this.storage();
+    function show() {
+        let data = localStorage.getItem('data') || '';
+        if (data.length > 0) data = JSON.parse(data);
 
         if (!data) return;
 
@@ -32,16 +31,18 @@ class Products extends React.Component {
             );
         });
 
-        return html ? <ul className="catalog_products_list">{html}</ul> : '';
+        if (html) setProductsHtml(<ul className="catalog_products_list">{html}</ul>);
     }
 
-    render() {
-        return (
-        <div className="catalog_products">
-            {this.show()}
-        </div>
-        );
-    }
+    useEffect(_ => {
+        if (dataStatus) show();
+    }, [dataStatus]);
+
+    return (
+    <div className="catalog_products">
+        {productsHtml}
+    </div>
+    );
 }
 
 export default Products;

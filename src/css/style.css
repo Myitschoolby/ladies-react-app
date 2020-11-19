@@ -100,6 +100,14 @@ body {
 
 .header_widget_cart {
     margin-left: 80px;
+
+    display: flex;
+    align-items: center;
+}
+
+.header_widget_cart_count {
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .header_widget_cart_btn {
