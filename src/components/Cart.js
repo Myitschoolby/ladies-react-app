@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
-class Cart extends React.Component {
-    render() {
-        return (
-            <div className="header_widget_cart">
-                <div className="header_widget_cart_count">0</div>
-                <button className="header_widget_cart_btn"></button>
-            </div>
-        );
-    }
-}
+import {Context} from '../App.js';
+
+const Cart = function() {
+    const {cart} = useContext(Context);
+
+    return (
+        <div className="header_widget_cart">
+            <div className="header_widget_cart_count">{cart.count}</div>
+            <button className="header_widget_cart_btn"></button>
+        </div>
+    );
+};
 
 export default Cart;

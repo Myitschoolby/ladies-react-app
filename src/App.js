@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Header from './components/Header.js';
 import Main from './components/Main.js';
@@ -9,6 +9,28 @@ export const Context = React.createContext();
 
 function App() {
     const [dataStatus, setDataStatus] = useState(false);
+    
+    const [cart, setCart] = useState(function() {
+        let list = [];
+        
+        const storage = localStorage.getItem('cart');
+
+        if (storage) {
+            if (storage.length > 0) list = JSON.parse(storage);
+        }
+
+        if (!Array.isArray(list)) list = [];
+
+        return {
+            count: list.length,
+            list: list
+        }
+    });
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart.list));
+
+    }, [cart]);
 
     const getData = async function() {
         if (dataStatus) return;
@@ -46,7 +68,7 @@ function App() {
 
     return (
         <div className="ladies" data-status={dataStatus}>
-        <Context.Provider value={dataStatus}>
+        <Context.Provider value={{ dataStatus, cart, setCart }}>
             <Header />
             <Main />
         </Context.Provider>
