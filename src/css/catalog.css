@@ -77,6 +77,10 @@
     top: 5px;
 }
 
+.catalog_filter_option_btn.rotate .ico_filter {
+    transform: rotate(180deg);
+}
+
 .catalog_nav {
     margin-left: auto;
 }

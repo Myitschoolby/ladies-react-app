@@ -3,9 +3,12 @@ import React, { useState, useContext, useEffect } from 'react';
 import {Context} from '../App.js';
 
 function Products() {
-    const {dataStatus, cart, setCart} = useContext(Context);
+    const {dataStatus, cart, setCart, filter, setFilter} = useContext(Context);
 
     const [productsHtml, setProductsHtml] = useState('');
+
+    let data = localStorage.getItem('data') || '';
+    if (data.length > 0) data = JSON.parse(data);
 
     function addDel(event) {
         const action = event.target.dataset.action;
@@ -32,13 +35,62 @@ function Products() {
         });
     };
 
+    function filterProducts() {
+        let filterData = data.filter(function(product) {
+            let reg = new RegExp(filter.value,"gmi");
+
+            return reg.test(product.title) ? product : false;
+        });
+
+        if (filterData.length > 0) return filterData;
+        return false;
+    }
+
+    function sortProducts() {
+        let priceData = [];
+
+        // priceData = data.map(function(product) {
+        //     return product.price;
+        // });
+
+        // data.forEach((product, index) => {
+        //     priceData['id' + index] = product.price;
+        // });
+
+        // priceData.sort(function(a, b) {
+        //     if (a > b) return 1;
+        //     return -1;
+        // });
+
+        // console.log(priceData);
+
+        // if (filter.value === 'asc') {
+
+        // } else {
+
+        // }
+
+        return false;
+    }
+
     function show() {
-        let data = localStorage.getItem('data') || '';
-        if (data.length > 0) data = JSON.parse(data);
+        let dataProducts = data || [];
 
-        if (!data) return;
+        if (filter.type === 'search' && filter.value.length > 0) {
+            let filterData = filterProducts();
 
-        let html = data.map(function (product, index) {
+            if (filterData !== false && filterData.length > 0) dataProducts = filterData;
+            else dataProducts = data;
+        }
+
+        if (filter.type === 'sort') {
+            let sortData = sortProducts();
+
+            if (sortData !== false && sortData.length > 0) dataProducts = sortData;
+            else dataProducts = data;
+        }
+
+        let html = dataProducts.map(function (product, index) {
             let btnName = cart.list.indexOf(String(index)) !== -1 ? '-' : '+';
 
             return (
@@ -63,7 +115,7 @@ function Products() {
 
     useEffect(_ => {
         if (dataStatus) show();
-    }, [dataStatus]);
+    }, [dataStatus, filter]);
 
     return (
     <div className="catalog_products">

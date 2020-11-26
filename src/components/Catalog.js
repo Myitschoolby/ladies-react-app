@@ -1,17 +1,31 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import '../css/catalog.css';
 
 import Products from './Products.js';
 
-class Catalog extends React.Component {
-    constructor() {
-        super();
+import {Context} from '../App.js';
 
-        this.slideNextPrev = this.slideNextPrev.bind(this);
+function Catalog() {
+    const {filter, setFilter} = useContext(Context);
+
+    function sort(event) {
+        if (filter.type === 'sort') {
+            setFilter({
+                type: 'sort',
+                value: (filter.value === 'asc' ? 'desc' : 'asc')
+            });
+        } else {
+            setFilter({
+                type: 'sort',
+                value: 'asc'
+            });
+        }
+
+        event.target.classList.toggle('rotate');
     }
 
-    slideNextPrev(event) {
+    function slideNextPrev(event) {
         const btn = event.target === 'SPAN' ? event.target.closest('button') : event.target;
         const dir = !btn.dataset.dir ? 'next' : btn.dataset.dir;
 
@@ -47,27 +61,25 @@ class Catalog extends React.Component {
         product_first.style.marginLeft = `-${ml}px`;
     }
 
-    render() {
-        return (
-            <div className="catalog">
-                <div className="catalog_header">
-                    <div className="catalog_filters">
-                        <div className="catalog_filter_name">Best Sellers</div>
-                        <div className="catalog_filter_option">
-                            <button className="catalog_filter_option_btn">
-                                <span className="ico_filter"></span>
-                            </button>
-                        </div>
-                    </div>
-                    <div className="catalog_nav">
-                        <button data-dir="prev" onClick={this.slideNextPrev} className="catalog_nav_btn_prev"><span className="ico_arrow"></span></button>
-                        <button data-dir="next" onClick={this.slideNextPrev} className="catalog_nav_btn_next"><span className="ico_arrow"></span></button>
+    return (
+        <div className="catalog">
+            <div className="catalog_header">
+                <div className="catalog_filters">
+                    <div className="catalog_filter_name">All products</div>
+                    <div className="catalog_filter_option">
+                        <button onClick={sort} className="catalog_filter_option_btn">
+                            <span className="ico_filter"></span>
+                        </button>
                     </div>
                 </div>
-                <Products />
+                <div className="catalog_nav">
+                    <button data-dir="prev" onClick={slideNextPrev} className="catalog_nav_btn_prev"><span className="ico_arrow"></span></button>
+                    <button data-dir="next" onClick={slideNextPrev} className="catalog_nav_btn_next"><span className="ico_arrow"></span></button>
+                </div>
             </div>
-        );
-    }
+            <Products />
+        </div>
+    );
 }
 
 export default Catalog;

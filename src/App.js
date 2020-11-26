@@ -9,6 +9,11 @@ export const Context = React.createContext();
 
 function App() {
     const [dataStatus, setDataStatus] = useState(false);
+
+    const [filter, setFilter] = useState({
+        type: '',
+        value: ''
+    });
     
     const [cart, setCart] = useState(function() {
         let list = [];
@@ -68,7 +73,7 @@ function App() {
 
     return (
         <div className="ladies" data-status={dataStatus}>
-        <Context.Provider value={{ dataStatus, cart, setCart }}>
+        <Context.Provider value={{ dataStatus, cart, setCart, filter, setFilter }}>
             <Header />
             <Main />
         </Context.Provider>
