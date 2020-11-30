@@ -46,31 +46,18 @@ function Products() {
         return false;
     }
 
-    function sortProducts() {
+    function sortProducts(type) {
         let priceData = [];
 
-        // priceData = data.map(function(product) {
-        //     return product.price;
-        // });
+        priceData = data;
 
-        // data.forEach((product, index) => {
-        //     priceData['id' + index] = product.price;
-        // });
+        priceData.sort((a, b) => {
+            return a.price - b.price;
+        });
 
-        // priceData.sort(function(a, b) {
-        //     if (a > b) return 1;
-        //     return -1;
-        // });
+        if (type == 'desc') priceData = priceData.reverse();
 
-        // console.log(priceData);
-
-        // if (filter.value === 'asc') {
-
-        // } else {
-
-        // }
-
-        return false;
+        return priceData || false;
     }
 
     function show() {
@@ -84,7 +71,7 @@ function Products() {
         }
 
         if (filter.type === 'sort') {
-            let sortData = sortProducts();
+            let sortData = sortProducts(filter.value);
 
             if (sortData !== false && sortData.length > 0) dataProducts = sortData;
             else dataProducts = data;
